@@ -14,6 +14,9 @@ MANUAL_SRC = mtheme.dtx
 MANUAL_PDF = mtheme.pdf
 TEXC := latexmk -xelatex -output-directory=$(TEMP_DIR)
 
+CTAN_CONTENT = $(INS) $(DTX) $(MANUAL_PDF)
+CTAN_ARCHIVE = mtheme.zip
+
 DOCKER_IMAGE = latex-image
 DOCKER_CONTAINER = latex-container
 
@@ -39,8 +42,14 @@ manual: $(MANUAL_PDF)
 
 demo: $(DEMO_PDF)
 
-ctan:
-	@echo Not yet implemented.
+ctan: $(CTAN_CONTENT) ctan-dir
+	$(foreach file, $(CTAN_CONTENT), \
+		$(shell cp $(file) mtheme/))
+	@zip -q $(CTAN_ARCHIVE) mtheme/*
+	@rm -rf mtheme
+
+ctan-dir:
+	@mkdir -p mtheme
 
 clean:
 	@git clean -xfd
