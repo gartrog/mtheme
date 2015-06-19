@@ -185,18 +185,6 @@
   \begin{minipage}[b][\paperheight]{\textwidth}
     \vspace*{\@mtheme@voffset}
 
-    \ifx\inserttitlegraphic\@empty\else
-    {% \inserttitlegraphic is nonempty
-      \vbox to 0pt
-      {% display title graphic without changing the position of other elements
-        \vspace*{2em}
-        \usebeamercolor[fg]{titlegraphic}%
-        \inserttitlegraphic%
-      }%
-      \nointerlineskip%
-    }
-    \fi
-
     \vfill%
 
     \ifx\inserttitle\@empty\else
@@ -256,7 +244,20 @@
     }}
     \fi
 
+    \ifx\inserttitlegraphic\@empty\else
+    {% \inserttitlegraphic is nonempty
+      \vbox to 0pt
+      {% display title graphic without changing the position of other elements
+        \vspace*{2em}
+        \usebeamercolor[fg]{titlegraphic}%
+        \inserttitlegraphic%
+      }%
+      \nointerlineskip%
+    }
+    \fi
+
     \vfill
+
     \vspace*{\@mtheme@voffset}
   \end{minipage}
 }
@@ -339,7 +340,8 @@
 %
 % \begin{macro}{\itemBullet}
 %    \begin{macrocode}
-\newcommand{\itemBullet}{∙}
+%\newcommand{\itemBullet}{∙}
+\newcommand{\itemBullet}{$\bullet$}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -347,7 +349,8 @@
 \setbeamertemplate{itemize item}{\itemBullet}
 \setbeamertemplate{itemize subitem}{\itemBullet}
 \setbeamertemplate{itemize subsubitem}{\itemBullet}
-\setlength{\parskip}{0.5em}
+%\setbeamertemplate{items}[ball]
+\setlength{\parskip}{0.3em}
 %    \end{macrocode}
 %
 % Block environment
@@ -481,6 +484,8 @@
 \setbeamertemplate{footline}
 {%
 \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=3ex,leftskip=0.3cm,rightskip=0.3cm]{footline}%
+  \usebeamerfont{author in head/foot}%
+  \insertshortauthor~~(\:\insertshortinstitute\:)
   \hfill\usebeamerfont{page number in head/foot}%
 \if@noSlideNumbers%
   %Purposefully left blank to display no slide number.%
@@ -513,6 +518,7 @@
 \else%
     \mthemetitleformat{\insertframetitle}%
 \fi%
+\hfill\raisebox{-1.8ex}{\includegraphics[height=5ex]{ATLAS_logo}}
 \end{beamercolorbox}%
 \if@useTitleProgressBar
   \nointerlineskip
