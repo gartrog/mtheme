@@ -64,6 +64,7 @@
 \definecolor{mDarkTeal}{HTML}{23373b}
 \definecolor{mLightBrown}{HTML}{EB811B}
 \definecolor{mLightGreen}{HTML}{14B03D}
+\definecolor{mATLASBlue}{HTML}{0B80C0}
 %    \end{macrocode}
 %
 % Base Colors
@@ -93,7 +94,8 @@
 %    \begin{macrocode}
 \setbeamercolor{titlelike}{use=normal text, parent=normal text}
 \setbeamercolor{structure}{%
-  fg=normal text.fg
+%fg=normal text.fg
+  fg=mATLASBlue
 }
 %    \end{macrocode}
 %
@@ -132,11 +134,11 @@
 \if@beamer@metropolis@blockbg
   \setbeamercolor{block title}{%
     use=normal text,
-    fg=normal text.fg,
+    fg=structure.fg,
     bg=normal text.bg!80!fg
   }
 \else
-  \setbeamercolor{block title}{use=normal text, parent=normal text}
+  \setbeamercolor{block title}{use=normal text, fg=structure.fg, parent=normal text}
 \fi
 \setbeamercolor{block title alerted}{%
     use={block title, alerted text},
