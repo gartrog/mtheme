@@ -12,6 +12,7 @@ DEMO_SRC = demo.tex
 DEMO_PDF = demo.pdf
 MANUAL_SRC = mtheme.dtx
 MANUAL_PDF = mtheme.pdf
+LOGO = ATLAS_logo.png
 TEXC := latexmk -xelatex -output-directory=$(TEMP_DIR)
 
 DOCKER_IMAGE = latex-image
@@ -48,11 +49,13 @@ clean:
 install: $(STY) $(MANUAL_PDF)
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(STY) $(INSTALL_DIR)
+	@cp $(LOGO) $(INSTALL_DIR)
 	@mkdir -p $(MANUAL_DIR)
 	@cp $(MANUAL_PDF) $(MANUAL_DIR)
 
 uninstall:
 	@rm -f $(addprefix $(INSTALL_DIR)/, $(STY))
+	@rm -f $(addprefix $(INSTALL_DIR)/, $(LOGO))
 	@rm -f $(MANUAL_DIR)/$(MANUAL_PDF)
 	@rmdir $(INSTALL_DIR)
 	@rmdir $(MANUAL_DIR)
