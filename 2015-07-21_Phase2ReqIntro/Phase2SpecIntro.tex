@@ -1,0 +1,103 @@
+%\documentclass[pdftex,11pt,draft]{beamer}
+\documentclass[8pt]{beamer}
+%{{{ En-têtes
+% Packages pour le français
+\usetheme[usetitleprogressbar,nooffset,usetotalslideindicator]{m}
+\usepackage{appendixnumberbeamer}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+\usepackage{atlasphysics}
+\usepackage{tikz}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{marvosym}
+\usepackage{enumitem}
+
+
+%\DeclareGraphicsExtensions{.jpg,.png,.JPG,.pdf,.eps,.epsi}  % Formats d'images
+
+\hypersetup{colorlinks=true}
+\setlist{itemsep=0pt, topsep=0pt}
+\setitemize{label=\usebeamerfont*{itemize item}%
+  \usebeamercolor[fg]{itemize item}
+\usebeamertemplate{itemize item}}
+
+\newcommand{\green}[1]{{\color{mLightGreen}#1}}
+
+\newcommand{\plot}[2]{\centering\includegraphics[width=#1\textwidth]{#2}\\}
+%}}}
+
+
+% contenu de la page de titre
+\title{Introduction}
+%\subtitle{On the road again}
+\author[N. Morange]{Nicolas Morange}
+%\date{December 4, 2009}
+\institute[LAL Orsay]{}
+\titlegraphic{\centering\includegraphics[height=2cm]{LAL}
+\hspace{1.5cm}\includegraphics[height=2cm]{CNRS_logo}}
+
+\graphicspath{{figures/}
+}
+
+\begin{document}
+%{{{ Titre et sommaire
+\maketitle
+\small
+
+
+\begin{frame}{Goals}
+  \begin{block}{Specifications for Phase 2}
+    \begin{itemize}
+      \item Phase 2 is still $\sim$10 years away
+      \item But the TDR is quite near ($\sim$2017)
+      \item And some important design decisions need to taken by then
+      \item \emph{We need to guide the designs by providing specifications or proposals that are driven by the physics we want to do at Phase 2}
+      \item We need time for discussions, to converge on these aspects
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{What we want to help deciding}
+    \begin{itemize}
+      \item Dynamic ranges
+      \item Linearities
+      \item Noise at different points in the chain
+      \item ADC size
+      \item ADC sampling rate
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Twiki}
+    \begin{itemize}
+      \item I will put as much information as possible on a Twiki page
+      \item that will be kept updated
+      \item \url{https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/LArPhaseIIHardwareReq}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Meetings}
+  \begin{block}{Schedule}
+    \begin{itemize}
+      \item Goal is to have $\sim$1 meeting per month
+      \item With ample time for discussions
+      \item Next meeting will be during LAr week in September (not enough time for discussions in Phase2 electronics general meeting)
+      \item Exact slot still in discussion
+      \item Main option is Monday, beginning of afternoon
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Agenda}
+    \begin{itemize}
+      \item Sophie on EM dynamic range and linearity
+      \item Evgeny on HEC
+      \item Yum on digital signal processing
+      \item Time to go through the Twiki and discuss some open points
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\end{document}
