@@ -281,9 +281,16 @@
 %
 % \begin{macro}{\progressbar}
 %    \begin{macrocode}
+\newlength\localtotalframenumber
+\newlength\localframenumber
 \newcommand{\progressbar}[1]{%
+  \setlength{\localtotalframenumber}{\inserttotalframenumber pt}
+  \addtolength{\localtotalframenumber}{-1pt}
+  \setlength{\localframenumber}{\insertframenumber pt}
+  \addtolength{\localframenumber}{-1pt}
   \setlength{\progressbar@percent}{%
-    #1 * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+    %#1 * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+    #1 * \ratio{\localframenumber}{\localtotalframenumber}%
   }%
   \begin{tikzpicture}[tight background]
     \usebeamercolor{progress bar}
@@ -543,7 +550,7 @@
 %
 % \begin{macro}{\titlepage}
 %    \begin{macrocode}
-\renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
+\renewcommand{\titlepage}{\otp\addtocounter{framenumber}{0}}
 %    \end{macrocode}
 % \end{macro}
 %
