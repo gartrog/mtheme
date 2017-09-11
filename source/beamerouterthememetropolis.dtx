@@ -129,7 +129,10 @@
 %    \begin{macrocode}
 \defbeamertemplate{headline}{plain}{}
 \defbeamertemplate{footline}{plain}{%
-  \begin{beamercolorbox}[wd=\textwidth, sep=3ex]{footline}%
+  \begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=3ex,leftskip=0.3cm,rightskip=0.3cm]{footline}%
+    \usebeamerfont{author in head/foot}%
+    \insertshortauthor~~(\:\insertshortinstitute\:)
+    \hfill
     \usebeamerfont{page number in head/foot}%
     \usebeamertemplate*{frame footer}
     \hfill%
@@ -149,7 +152,7 @@
 %    progress bar.
 %    \begin{macrocode}
 \newlength{\metropolis@frametitle@padding}
-\setlength{\metropolis@frametitle@padding}{2.2ex}
+\setlength{\metropolis@frametitle@padding}{2.0ex}
 \newcommand{\metropolis@frametitlestrut@start}{
   \rule{0pt}{\metropolis@frametitle@padding +%
     \totalheightof{%
@@ -161,21 +164,15 @@
   \rule[-\metropolis@frametitle@padding]{0pt}{\metropolis@frametitle@padding}
 }
 \defbeamertemplate{frametitle}{plain}{%
-  \nointerlineskip%
-  \begin{beamercolorbox}[%
-      wd=\paperwidth,%
-      sep=0pt,%
-      leftskip=\metropolis@frametitle@padding,%
-      rightskip=\metropolis@frametitle@padding,%
-    ]{frametitle}%
-  \metropolis@frametitlestrut@start%
-  \insertframetitle%
-  \nolinebreak%
-  \metropolis@frametitlestrut@end%
-  \end{beamercolorbox}%
+\nointerlineskip%
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=2.5ex,dp=1.5ex]{frametitle}%
+\usebeamerfont{frametitle}%
+    \insertframetitle%
+\hfill\raisebox{-1.3ex}{\includegraphics[height=4ex]{ATLAS_logo}}%
+\end{beamercolorbox}%
 }
 \setbeamertemplate{frametitle continuation}{%
-  \usebeamerfont{frametitle}
+  \usebeamerfont{frametitle}%
   \romannumeral \insertcontinuationcount
 }
 %    \end{macrocode}
@@ -188,17 +185,23 @@
 %    \begin{macrocode}
 \newlength{\metropolis@progressinheadfoot}
 \newlength{\metropolis@progressinheadfoot@linewidth}
-\setlength{\metropolis@progressinheadfoot@linewidth}{0.4pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{0.6pt}
+\newlength\localtotalframenumberouter
+\newlength\localframenumberouter
 \setbeamertemplate{progress bar in head/foot}{
-  \nointerlineskip
+  \nointerlineskip%
+  \setlength{\localtotalframenumberouter}{\inserttotalframenumber pt}%
+  \addtolength{\localtotalframenumberouter}{-1pt}%
+  \setlength{\localframenumberouter}{\insertframenumber pt}%
+  \addtolength{\localframenumberouter}{-1pt}%
   \setlength{\metropolis@progressinheadfoot}{%
-    \paperwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+    \paperwidth * \ratio{\localframenumberouter}{\localtotalframenumberouter}%
   }%
-  \begin{beamercolorbox}[wd=\paperwidth]{progress bar in head/foot}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.4pt,dp=0pt]{progress bar in head/foot}
     \tikzexternaldisable%
     \begin{tikzpicture}
-      \fill[bg] (0,0) rectangle (\paperwidth, \metropolis@progressinheadfoot@linewidth);
-      \fill[fg] (0,0) rectangle (\metropolis@progressinheadfoot, \metropolis@progressinheadfoot@linewidth);
+      \fill[bg, fill=bg] (0,0) rectangle (\paperwidth, \metropolis@progressinheadfoot@linewidth);
+      \fill[fg, fill=fg] (0,0) rectangle (\metropolis@progressinheadfoot, \metropolis@progressinheadfoot@linewidth);
     \end{tikzpicture}%
     \tikzexternalenable%
   \end{beamercolorbox}

@@ -103,7 +103,6 @@
 %    \begin{macrocode}
 \setbeamertemplate{title page}{
   \begin{minipage}[b][\paperheight]{\textwidth}
-    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
     \vfill%
     \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
     \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
@@ -120,6 +119,7 @@
     \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
     \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
     \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi
     \vfill
     \vspace*{1mm}
   \end{minipage}
@@ -143,7 +143,7 @@
   \ifbeamer@inframe
     \titlepage
   \else
-    \frame[plain,noframenumbering]{\titlepage}
+    \frame[plain]{\titlepage}
   \fi
 }
 \def\titlepage{%
@@ -334,9 +334,15 @@
 \newlength{\metropolis@progressonsectionpage}
 \newlength{\metropolis@progressonsectionpage@linewidth}
 \setlength{\metropolis@progressonsectionpage@linewidth}{0.4pt}
+\newlength\localtotalframenumber
+\newlength\localframenumber
 \setbeamertemplate{progress bar in section page}{
+  \setlength{\localtotalframenumber}{\inserttotalframenumber pt}
+  \addtolength{\localtotalframenumber}{-1pt}
+  \setlength{\localframenumber}{\insertframenumber pt}
+  \addtolength{\localframenumber}{-1pt}
   \setlength{\metropolis@progressonsectionpage}{%
-    \textwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+    \textwidth * \ratio{\localframenumber}{\localtotalframenumber}%
   }%
   \tikzexternaldisable%
   \begin{tikzpicture}
@@ -378,7 +384,8 @@
 %    \begin{macrocode}
 \newlength{\metropolis@blocksep}
 \newlength{\metropolis@blockadjust}
-\setlength{\metropolis@blocksep}{0.75ex}
+%%\setlength{\metropolis@blocksep}{0.75ex}
+\setlength{\metropolis@blocksep}{0ex}
 \setlength{\metropolis@blockadjust}{0.25ex}
 \providecommand{\metropolis@strut}{%
   \vphantom{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()}%
@@ -479,9 +486,13 @@
 % \subsubsection{Lists and floats}
 %
 %    \begin{macrocode}
-\setbeamertemplate{itemize items}{\textbullet}
+%% \setbeamertemplate{itemize items}{\textbullet}
+\setbeamertemplate{itemize items}{$\bullet$}
 \setbeamertemplate{caption label separator}{: }
 \setbeamertemplate{caption}[numbered]
+\setlength{\leftmargini}{1em}
+\setlength{\leftmarginii}{1em}
+\setlength{\leftmarginiii}{1em}
 %    \end{macrocode}
 %
 %
@@ -501,7 +512,7 @@
 %
 %    \begin{macrocode}
 \newlength{\metropolis@parskip}
-\setlength{\metropolis@parskip}{0.5em}
+\setlength{\metropolis@parskip}{0.3em}
 \setlength{\parskip}{\metropolis@parskip}
 \linespread{1.15}
 %    \end{macrocode}

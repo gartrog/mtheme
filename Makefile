@@ -6,6 +6,7 @@ DEMO_SRC    = demo/demo.tex demo/demo.bib
 DEMO_PDF    = demo/demo.pdf
 DOC_SRC     = doc/metropolistheme.dtx
 DOC_PDF     = doc/metropolistheme.pdf
+LOGO = ATLAS_logo.png
 
 CTAN_CONTENT = README.md $(INS) $(PACKAGE_SRC) $(DOC_SRC) $(DOC_PDF) $(DEMO_SRC) $(DEMO_PDF)
 
@@ -35,11 +36,13 @@ clean: clean-cache clean-sty
 install: $(PACKAGE_STY) $(DOC_PDF)
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(PACKAGE_STY) $(INSTALL_DIR)
+	@cp $(LOGO) $(INSTALL_DIR)
 	@mkdir -p $(DOC_DIR)
 	@cp $(DOC_PDF) $(DOC_DIR)
 
 uninstall:
 	@rm -f "$(addprefix $(INSTALL_DIR)/, $(PACKAGE_STY))"
+	@rm -f $(addprefix $(INSTALL_DIR)/, $(LOGO))
 	@rmdir "$(INSTALL_DIR)"
 	@rm -f "$(DOC_DIR)/$(notdir $(DOC_PDF))"
 	@rmdir "$(DOC_DIR)"
