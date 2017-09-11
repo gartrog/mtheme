@@ -79,8 +79,9 @@
 %    \begin{macrocode}
 \definecolor{mDarkBrown}{HTML}{604c38}
 \definecolor{mDarkTeal}{HTML}{23373b}
-\definecolor{mLightBrown}{HTML}{EB811B}
-\definecolor{mLightGreen}{HTML}{14B03D}
+\definecolor{mLightBrown}{HTML}{FFAD35}
+\definecolor{mLightGreen}{HTML}{5DBE5D}
+\definecolor{mATLASBlue}{HTML}{0B80C0}
 %    \end{macrocode}
 %
 %
@@ -127,7 +128,7 @@
 \setbeamercolor{author}{use=normal text, parent=normal text}
 \setbeamercolor{date}{use=normal text, parent=normal text}
 \setbeamercolor{institute}{use=normal text, parent=normal text}
-\setbeamercolor{structure}{use=normal text, fg=normal text.fg}
+\setbeamercolor{structure}{fg=mATLASBlue}
 %    \end{macrocode}
 %
 % The “primary” palette should be used for the most important navigational
@@ -138,7 +139,7 @@
 \setbeamercolor{palette primary}{%
   use=normal text,
   fg=normal text.bg,
-  bg=normal text.fg
+  bg=mATLASBlue
 }
 \setbeamercolor{frametitle}{%
   use=palette primary,
@@ -156,7 +157,8 @@
 \setbeamercolor{progress bar}{%
   use=alerted text,
   fg=alerted text.fg,
-  bg=alerted text.fg!50!black!30
+  bg=normal text.bg!50!fg
+%bg=alerted text.fg!50!black!30
 }
 \setbeamercolor{title separator}{
   use=progress bar,
@@ -182,7 +184,7 @@
 \newcommand{\metropolis@block@transparent}{
   \setbeamercolor{block title}{%
     use=normal text,
-    fg=normal text.fg,
+    fg=structure.fg,
     bg=
   }
   \setbeamercolor{block body}{
@@ -192,7 +194,7 @@
 \newcommand{\metropolis@block@fill}{
   \setbeamercolor{block title}{%
     use=normal text,
-    fg=normal text.fg,
+    fg=structure.fg,
     bg=normal text.bg!80!fg
   }
   \setbeamercolor{block body}{
